@@ -41,12 +41,12 @@
   
   .banner_button {
     font-size: 0.8rem !important;
-    border-radius: 4px !important;
+    border-radius: 10px !important;
   }
 }
 
 .banner__contents {
-  margin-left:  40px;
+  margin-left: 40px;
   padding-top: 140px;
   height: 190px;
 }
@@ -93,15 +93,18 @@
   padding: 0.4rem 1rem;
   margin-right: 1rem;
   border-radius: 10px;
+  border: 0;
+  transition: all var(--animation-duration);
 }
 
 .banner__button:hover {
-  color: #000;
-  background-color: rgba(170, 170, 170, 0.9);
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.8);
   transition: all 0.2s;
+  transform: scale(1.15);
 }
 
 .play {
-  background-color: white;
-  color: black;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(0, 0, 0);
 }
