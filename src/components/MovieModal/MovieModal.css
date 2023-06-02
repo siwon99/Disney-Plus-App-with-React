@@ -18,6 +18,22 @@
   cursor: pointer;
   z-index: 1000;
   color: white;
+  padding: 5px 10px;
+  background-color: black;
+  border-radius: 50%;
+  font-weight: 550;
+  font-size: 20px;
+  transition: 200ms all ease-in-out;
+}
+
+.modal-close:hover {
+  padding: 5px 10px;
+  transition: 200ms all ease-in-out;
+  transform: scale(0.8);
+}
+
+.modal__user_perc {
+  color: rgb(2, 188, 2);
 }
 
 .modal {
@@ -52,6 +68,7 @@
 .modal__content {
   padding: 40px;
   color: white;
+  position: relative;
 }
 
 .modal__title {
@@ -65,9 +82,41 @@
   font-size: 18px;
 }
 
-.modal__overview {
+.modal__aver {
   font-size: 20px;
   line-height: 1.5;
+  color: white;
+  position: absolute;
+  margin-top: 60px;
+  margin-bottom: 50px;
+  font-weight: bold;
+}
+
+.modal__overview {
+  width: 90%;
+  font-size: 17px;
+  line-height: 1.5;
+  color: lightgray;
+  position: absolute;
+  margin-top: 100px;
+  padding-bottom: 50px;
+}
+
+.modal__play {
+  width: 90%;
+  height: 40px;
+  color: black;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  position: absolute;
+  align-items: center;
+  margin: 0;
 }
 
 .modal::-webkit-scrollbar {
@@ -87,6 +136,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .modal__aver {
+    font-size: 16px;
+  }
+
   .modal__overview {
     font-size: 16px;
   }
