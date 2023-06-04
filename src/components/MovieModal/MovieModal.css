@@ -73,13 +73,14 @@
 
 .modal__title {
   padding: 0;
-  font-size: 40px;
+  font-size: 35px;
   margin: 16px 0;
 }
 
 .modal__details {
   font-weight: 600;
   font-size: 18px;
+  margin: 10px auto;
 }
 
 .modal__aver {
@@ -94,12 +95,11 @@
 
 .modal__overview {
   width: 90%;
-  font-size: 17px;
+  font-size: 13px;
   line-height: 1.5;
   color: lightgray;
   position: absolute;
-  margin-top: 100px;
-  padding-bottom: 50px;
+  margin: 100px auto;
 }
 
 .modal__play {
