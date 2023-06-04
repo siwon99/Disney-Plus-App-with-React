@@ -16,7 +16,6 @@ const SearchPage = () => {
   const searchTerm = query.get("q");
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-
   useEffect(() => {
     if(debouncedSearchTerm) {
       fetchSearchMovie(debouncedSearchTerm)

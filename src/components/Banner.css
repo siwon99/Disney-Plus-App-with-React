@@ -94,13 +94,13 @@
   margin-right: 1rem;
   border-radius: 10px;
   border: 0;
-  transition: all var(--animation-duration);
+  transition: all var(--animation-duration) ease-in-out;
 }
 
 .banner__button:hover {
   color: rgb(0, 0, 0);
   background-color: rgba(255, 255, 255, 0.8);
-  transition: all 0.2s;
+  transition: all 0.2s ease-in-out;
   transform: scale(1.15);
 }
 

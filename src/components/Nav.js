@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
-import {getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup} from 'firebase/auth';
+import {getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut} from 'firebase/auth';
 
 const Nav = () => {
 
@@ -56,6 +56,17 @@ const Nav = () => {
     })
   }
 
+  const handleSignOut = () => {
+    signOut(auth)
+    .then(() => {
+      setUserData({});
+      navigate(`/`);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
   return (
     <NavWrapper show={show}>
       <Logo>
@@ -74,13 +85,13 @@ const Nav = () => {
             onChange={handleChange}
             className='nav__input' 
             type="text" 
-            placeholder='검색해주세요' 
+            placeholder='작품, 장르 또는 인물을 검색해 보세요' 
           />
 
           <SignOut>
             <UserImg src={userData.photoURL} alt={userData.displayName} />
             <DropDown>
-              <span>Sign Out</span>
+              <span onClick={handleSignOut}>Sign Out</span>
             </DropDown>
           </SignOut>
         </>
@@ -91,11 +102,43 @@ const Nav = () => {
 
 export default Nav
 
-const SignOut = styled.div``;
+const DropDown = styled.div`
+  position: absolute;
+  top: 48px;
+  right: 0px;
+  background: rgba(19, 19, 19);
+  border: 1px solid rgba(151, 151, 151, 0.34);
+  border-radius: 4px;
+  box-shadow: rgba(0 0 0 / 50%) 0px 0px 18px 0px;
+  padding: 10px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  width: 100%;
+  opacity: 0;
+`;
 
-const UserImg = styled.div``;
+const SignOut = styled.div`
+  position: relative;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
 
-const DropDown = styled.div``;
+  &:hover {
+    ${DropDown} {
+      opacity: 1;
+      transition-duration: 1s;
+    }
+  }
+`;
+
+const UserImg = styled.img`
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+`;
 
 const Login = styled.a`
   backgroundcolor: rgba(0, 0, 0, 0.6);
@@ -112,7 +155,6 @@ const Login = styled.a`
   }
 `;
 
-
 const Input = styled.input`
   position: fixed;
   left: 50%;
@@ -122,6 +164,9 @@ const Input = styled.input`
   color: #fff;
   padding: 5px;
   border: none;
+  width: 500px;
+  height: 25px;
+  text-align: center;
 `
 
 const NavWrapper = styled.nav`
@@ -150,5 +195,6 @@ const Logo = styled.a`
   img {
     dispaly: block;
     width: 100%;
+    cursor: pointer;
   }
 `;
