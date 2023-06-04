@@ -5,6 +5,7 @@ import "./SearchPage.css";
 import { useDebounce } from '../../hooks/useDebounce';
 
 const SearchPage = () => {
+  const navigate = useNavigate();
   const [searchResults, setSearchResults] = useState([]);
 
   const useQuery = () => {
@@ -13,14 +14,14 @@ const SearchPage = () => {
 
   let query = useQuery();
   const searchTerm = query.get("q");
-  const debounceSearchTerm = useDebounce(searchTerm, 500);
-  const navigate = useNavigate();
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
 
   useEffect(() => {
-    if(debounceSearchTerm) {
-      fetchSearchMovie(debounceSearchTerm)
+    if(debouncedSearchTerm) {
+      fetchSearchMovie(debouncedSearchTerm)
     }
-  }, [debounceSearchTerm])
+  }, [debouncedSearchTerm])
 
   const fetchSearchMovie = async (searchTerm) => {
     try {
