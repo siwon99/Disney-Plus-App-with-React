@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
-import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
+import {getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup} from 'firebase/auth';
 
 const Nav = () => {
 
@@ -11,6 +11,19 @@ const Nav = () => {
   const navigate = useNavigate();
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
+  const [userData, setUserData] = useState({});
+
+  useEffect (() => {
+    onAuthStateChanged(auth, (user) => {
+      if(user) {
+        if(pathname === "/") {
+          navigate("/main");
+        }
+      } else {
+        navigate("/");
+      }
+    })
+  }, [])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -34,7 +47,10 @@ const Nav = () => {
 
   const handleAuth = () => {
     signInWithPopup(auth, provider)
-    .then(result => {})
+    .then(result => {
+      setUserData(result.user);
+        localStorage.setItem("userData", JSON.stringify(result.user));
+    })
     .catch(error => {
       console.log(error);
     })
@@ -51,19 +67,35 @@ const Nav = () => {
       </Logo>
 
       { pathname === "/" ? 
-      ( <Login onClick={handleAuth}>Login</Login> ) : 
-      <Input 
-        value={searchValue}
-        onChange={handleChange}
-        className='nav__input' 
-        type="text" 
-        placeholder='검색해주세요' 
-      />}
+        (<Login onClick={handleAuth}>Login</Login>) : 
+        <>
+          <Input 
+            value={searchValue}
+            onChange={handleChange}
+            className='nav__input' 
+            type="text" 
+            placeholder='검색해주세요' 
+          />
+
+          <SignOut>
+            <UserImg src={userData.photoURL} alt={userData.displayName} />
+            <DropDown>
+              <span>Sign Out</span>
+            </DropDown>
+          </SignOut>
+        </>
+      }
     </NavWrapper>
   )
 }
 
 export default Nav
+
+const SignOut = styled.div``;
+
+const UserImg = styled.div``;
+
+const DropDown = styled.div``;
 
 const Login = styled.a`
   backgroundcolor: rgba(0, 0, 0, 0.6);

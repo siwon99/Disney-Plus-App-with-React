@@ -36,11 +36,11 @@ const BgImage = styled.div`
 `;
 
 const Container = styled.section`
-  overflow: hidden;
-  display: fles;
-  flex-direction: column;
-  text-align: center;
-  height: 100vh;
+   overflow: hidden;
+   display: flex;
+   flex-direction: column;
+   text-align: center;
+   height: 100vh;
 `;
 
 const Content = styled.div`
@@ -65,10 +65,10 @@ const Center = styled.div`
 `;
 
 const LogoOne = styled.img`
-  margin--bottom: 12px;
+  margin-bottom: 12px;
   max-width: 600px;
   min-height: 1px;
-  dispaly: block
+  display: block;
   width: 100%;
 `;
 
@@ -90,7 +90,7 @@ const SignUpLink = styled.a`
 `;
 
 const Description = styled.p`
-  font-size:11px;
+  font-size: 11px;
   margin: 0 0 24px;
   line-height: 1.5;
   letter-spacing: 1.5px;
